@@ -1,0 +1,32 @@
+<app-login></app-login>
+<div class="create">
+  <div style="margin-bottom:20px;">
+  <b style="font-size:1.4em;" > Create your graudtion party!!</b>
+</div>
+  
+
+  <div>name: <input [(ngModel)]="shoppingname" placeholder="Your party name"></div>
+
+  <table>
+    <tr>
+      <td></td>
+      <td>Item name</td>
+      <td>Quantity</td>
+    </tr>
+    <tr *ngFor="let item of items, let i = index">
+      <td>{{i}} </td>
+      <td> <input [(ngModel)]="item.name" placeholder="Your party goods"> </td>
+      <td> <input [(ngModel)]="item.quantity" placeholder="Your party quantity"> </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <button (click)="addmoreitem()" > Add more items</button>
+      </td>
+     
+    </tr>
+  </table>
+  <div>
+    <input type="checkbox" [(ngModel)]="public"> Public
+  </div>
+  <button (click)="put()">Create</button>
+</div>

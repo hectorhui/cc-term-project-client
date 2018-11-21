@@ -1,0 +1,13 @@
+<app-login></app-login>
+
+<div class="home">
+    <div *ngFor="let party of list">
+        <div>{{party?.sl_name}} </div>
+        <div>{{party?.datetime}} </div>
+        <div *ngFor="let item of party.items">
+               {{item?.item_name}}
+               {{item?.quantity}} 
+        </div>
+    </div>
+</div>
+

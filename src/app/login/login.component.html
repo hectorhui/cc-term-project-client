@@ -1,0 +1,5 @@
+<div class="login">
+  <a href="/create"><span style="font-size: 1em;">+</span>Create party</a>
+  <button (click) ="signInWithGoogle()" *ngIf="!login">Login With Google</button>
+  <button (click) ="logout()" *ngIf="login">Logout</button>
+</div>
