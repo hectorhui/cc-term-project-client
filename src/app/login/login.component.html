@@ -1,5 +1,20 @@
 <div class="login">
+  <div>
+  <a href="/home">Home</a>
+  <!-- <a href="/mylist">My list</a> -->
   <a href="/create"><span style="font-size: 1em;">+</span>Create party</a>
+</div>
   <button (click) ="signInWithGoogle()" *ngIf="!login">Login With Google</button>
   <button (click) ="logout()" *ngIf="login">Logout</button>
+</div>
+
+<div class="home" *ngIf="!login">
+  <div class="title_bar">
+    <div class="title"  >
+      Login to see party lists
+    </div>
+  </div>
+  <div class="container">
+    <button (click)="signInWithGoogle()" *ngIf="!login"  ><img style="height:100px; width:100px; background: none; position: absolute; right:600px " src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png"></button>
+  </div>
 </div>

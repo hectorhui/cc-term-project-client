@@ -1,11 +1,18 @@
 <app-login></app-login>
 <div class="create">
   <div style="margin-bottom:20px;">
-  <b style="font-size:1.4em;" > Create your graudtion party!!</b>
-</div>
-  
+    <b style="font-size:1.4em;color:#e51414;"> Create your graudtion party!!</b>
+  </div>
 
-  <div>name: <input [(ngModel)]="shoppingname" placeholder="Your party name"></div>
+  <table>
+    <tr>
+      <td>Party name:</td>
+      <td colspan="2">
+        <div> <input style="width:280px;" [(ngModel)]="shoppingname" placeholder="Your party name"></div>
+      </td>
+    </tr>
+  </table>
+
 
   <table>
     <tr>
@@ -15,18 +22,19 @@
     </tr>
     <tr *ngFor="let item of items, let i = index">
       <td>{{i}} </td>
-      <td> <input [(ngModel)]="item.name" placeholder="Your party goods"> </td>
-      <td> <input [(ngModel)]="item.quantity" placeholder="Your party quantity"> </td>
+      <td> <input [(ngModel)]="item.item_name" placeholder="Beer or Whisky"> </td>
+      <td> <input [(ngModel)]="item.quantity" placeholder="1 Liter or 2 Liters"> </td>
     </tr>
     <tr>
-      <td colspan="3">
-          <button (click)="addmoreitem()" > Add more items</button>
+    </tr>
+    <tr>
+        <td> <input type="checkbox" [(ngModel)]="public"> Public</td>
+      <td>
+        <button (click)="addmoreitem()"> Add more items</button>
       </td>
-     
+      <td><button (click)="put()">Create your party</button></td>
+      
     </tr>
   </table>
-  <div>
-    <input type="checkbox" [(ngModel)]="public"> Public
-  </div>
-  <button (click)="put()">Create</button>
+
 </div>

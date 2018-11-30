@@ -1,13 +1,48 @@
 <app-login></app-login>
 
-<div class="home">
-    <div *ngFor="let party of list">
-        <div>{{party?.sl_name}} </div>
-        <div>{{party?.datetime}} </div>
-        <div *ngFor="let item of party.items">
-               {{item?.item_name}}
-               {{item?.quantity}} 
+<div>
+    <div class="home" *ngIf="islogin">
+        <div class="title_bar">
+            <div class="title">Shopping List</div>
         </div>
+
+        <div class="container">
+            <div *ngFor="let party of list" class="card">
+                <div style="text-align:center; font-weight:900; margin-bottom:10px; color:#e51414 "> {{party?.sl_name |
+                    uppercase}} </div>
+                <table>
+                    <tr>
+                        <th>
+                            
+                        </th>
+                        <th>name</th>
+                    </tr>
+                    <tr *ngFor="let item of party.items">
+                        <td>Goodes:</td>
+                        <td>{{item}}  </td>
+
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <small style="text-align:left">{{party?.datetime | slice:0:10}} at {{party?.datetime |
+                                slice:11:19}}</small>
+                        </th>
+                    </tr>
+                    <tr *ngIf="uid === party?.user_id" >
+                        <td>
+                            <!-- <app-create [date]="party?.datetime" [sl_name]="party?.sl_name"></app-create> -->
+                            <button (click)="modify(party?.datetime, party?.sl_name)" >Moidfy</button>
+
+                        </td>
+                        <td>
+                            <button (click)="del(party?.sl_name, party?.datetime)" >Delete</button>
+                        </td>
+                    </tr>
+                  
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
 

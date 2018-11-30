@@ -21,7 +21,7 @@ import {FormsModule} from '@angular/forms';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CreateComponent
+    CreateComponent,
   ],
   imports: [
     HttpClientModule,
@@ -48,10 +48,14 @@ import {FormsModule} from '@angular/forms';
       {
         path: 'create',
         component: CreateComponent
-      }
+      },
+      {
+        path: 'modify/:date/:sl_name',
+        component: CreateComponent
+      },
     ])
   ],
-  providers: [ApiService, UtilService],
+  providers: [ApiService, UtilService, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

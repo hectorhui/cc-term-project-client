@@ -1,4 +1,4 @@
 export class Items {
-        name: String;
+        item_name : String;
         quantity: Number;
 }

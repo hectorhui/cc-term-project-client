@@ -3,6 +3,6 @@ export class ShoppingList {
     sl_name: String;
     user_id: String;
     public: String;
-    datetime: Date;
-    items: Items[];
+    datetime: String;
+    items: String[];
 }

@@ -1,8 +1,10 @@
+import { ApiService } from './../service/api.service';
 import { UtilService } from './../service/util.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
+import {Output} from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +12,23 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  login: boolean;
-  userProfile: any;
+  @Output() login: boolean;
+  @Output()userProfile: any;
+
 
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private util: UtilService
+    private util: UtilService,
+    private api: ApiService,
   ) {
-    this.login = false;
-  }
-
-  ngOnInit() {
-    this.afAuth.auth.onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userProfile = user;
         this.login = true;
-        if(this.router.url !== '/create') {
-        this.util.navigate(['home']);
+        console.log(this.router.url.split('/')[1]);
+        if (this.router.url !== '/create' && this.router.url !== '/mylist' && this.router.url.split('/')[1] !== 'modify') {
+          this.util.navigate(['home']);
         }
       } else {
         this.login = false;
@@ -36,11 +37,19 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  ngOnInit() {
+  }
+
   signInWithGoogle() {
     try {
       const result = this.afAuth.auth
         .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then(res => this.login = true);
+        .then((res: any) => {
+          this.login = true;
+          console.log(res);
+          this.util.navigate(['home']);
+        }
+        );
     } catch (e) {
       console.error(e);
     }
@@ -50,6 +59,7 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signOut();
     this.login = false;
     this.userProfile = null;
+    this.util.navigate(['home']);
   }
 
 }
